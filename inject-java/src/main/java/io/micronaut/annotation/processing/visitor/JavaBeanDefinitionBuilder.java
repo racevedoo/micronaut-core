@@ -23,7 +23,6 @@ import io.micronaut.core.util.ArgumentUtils;
 import io.micronaut.inject.annotation.AnnotationMetadataHierarchy;
 import io.micronaut.inject.ast.ClassElement;
 import io.micronaut.inject.ast.Element;
-import io.micronaut.inject.ast.ElementFactory;
 import io.micronaut.inject.ast.FieldElement;
 import io.micronaut.inject.ast.MethodElement;
 import io.micronaut.inject.configuration.ConfigurationMetadataBuilder;
@@ -96,7 +95,7 @@ class JavaBeanDefinitionBuilder extends AbstractBeanDefinitionBuilder {
                         elementFactory.newFieldElement(
                                 parentType,
                                 variableElement,
-                                new AnnotationMetadataHierarchy(parentType.getDeclaredMetadata(), producerField.getDeclaredMetadata())
+                                AnnotationMetadataHierarchy.of(parentType.getDeclaredMetadata(), producerField.getDeclaredMetadata())
                         )
                 );
                 return writer;
@@ -138,7 +137,7 @@ class JavaBeanDefinitionBuilder extends AbstractBeanDefinitionBuilder {
                         elementFactory.newMethodElement(
                                 parentType,
                                 variableElement,
-                                new AnnotationMetadataHierarchy(parentType.getDeclaredMetadata(), producerMethod.getDeclaredMetadata())
+                                AnnotationMetadataHierarchy.of(parentType.getDeclaredMetadata(), producerMethod.getDeclaredMetadata())
                         )
                 );
                 return writer;

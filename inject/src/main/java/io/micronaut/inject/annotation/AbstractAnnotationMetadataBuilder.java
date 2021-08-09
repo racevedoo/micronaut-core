@@ -2012,7 +2012,7 @@ public abstract class AbstractAnnotationMetadataBuilder<T, A> {
 
             if (isReference) {
                 AnnotationMetadataReference ref = (AnnotationMetadataReference) annotationMetadata;
-                return new AnnotationMetadataHierarchy(ref, defaultMetadata);
+                return AnnotationMetadataHierarchy.of(ref, defaultMetadata);
             } else {
                 return defaultMetadata;
             }

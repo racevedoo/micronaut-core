@@ -576,7 +576,7 @@ public class BeanDefinitionInjectProcessor extends AbstractInjectAnnotationProce
 
 
                 BeanDefinitionVisitor proxyWriter = beanDefinitionWriters.get(proxyKey);
-                final AnnotationMetadata annotationMetadata = new AnnotationMetadataHierarchy(
+                final AnnotationMetadata annotationMetadata = AnnotationMetadataHierarchy.of(
                         concreteClassMetadata,
                         constructorAnnotationMetadata
                 );
@@ -658,7 +658,7 @@ public class BeanDefinitionInjectProcessor extends AbstractInjectAnnotationProce
 
                         if (annotationUtils.isAnnotated(introductionType.getName(), method) || JavaAnnotationMetadataBuilder.hasAnnotation(method, Override.class)) {
                             annotationMetadata = annotationUtils.newAnnotationBuilder().buildForParent(introductionType.getName(), classElement, method);
-                            annotationMetadata = new AnnotationMetadataHierarchy(typeAnnotationMetadata, annotationMetadata);
+                            annotationMetadata = AnnotationMetadataHierarchy.of(typeAnnotationMetadata, annotationMetadata);
                         } else {
                             annotationMetadata = new AnnotationMetadataReference(
                                     aopProxyWriter.getBeanDefinitionName() + BeanDefinitionReferenceWriter.REF_SUFFIX,
@@ -867,7 +867,7 @@ public class BeanDefinitionInjectProcessor extends AbstractInjectAnnotationProce
                 methodAnnotationMetadata = annotationMetadata;
             } else {
 
-                methodAnnotationMetadata = new AnnotationMetadataHierarchy(
+                methodAnnotationMetadata = AnnotationMetadataHierarchy.of(
                         concreteClassMetadata,
                         annotationMetadata
                 );
@@ -1356,7 +1356,7 @@ public class BeanDefinitionInjectProcessor extends AbstractInjectAnnotationProce
                             true,
                             false,
                             sourceMethodElement,
-                            new AnnotationMetadataHierarchy(concreteClassMetadata, methodAnnotationMetadata),
+                            AnnotationMetadataHierarchy.of(concreteClassMetadata, methodAnnotationMetadata),
                             new ClassElement[]{typeToImplementElement},
                             javaVisitorContext,
                             metadataBuilder,
@@ -2087,7 +2087,7 @@ public class BeanDefinitionInjectProcessor extends AbstractInjectAnnotationProce
         private BeanDefinitionWriter createFactoryBeanMethodWriterFor(Element method, TypeElement producedElement) {
             AnnotationMetadata annotationMetadata = annotationUtils.newAnnotationBuilder().buildForParent(producedElement, method, false);
 
-            annotationMetadata = new AnnotationMetadataHierarchy(
+            annotationMetadata = AnnotationMetadataHierarchy.of(
                     concreteClassMetadata,
                     annotationMetadata
             );

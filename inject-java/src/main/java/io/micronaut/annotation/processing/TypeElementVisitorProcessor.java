@@ -464,7 +464,7 @@ public class TypeElementVisitorProcessor extends AbstractInjectAnnotationProcess
             if (resolvedMethodMetadata instanceof AnnotationMetadataHierarchy) {
                 methodAnnotationMetadata = resolvedMethodMetadata;
             } else {
-                methodAnnotationMetadata = new AnnotationMetadataHierarchy(
+                methodAnnotationMetadata = AnnotationMetadataHierarchy.of(
                         annotationUtils.getAnnotationMetadata(executableElement.getEnclosingElement()),
                         resolvedMethodMetadata
                 );

@@ -94,7 +94,7 @@ class GroovyBeanDefinitionBuilder extends AbstractBeanDefinitionBuilder {
                         elementFactory.newFieldElement(
                                 parentType,
                                 fieldNode,
-                                new AnnotationMetadataHierarchy(parentType.getDeclaredMetadata(), producerField.getDeclaredMetadata())
+                                AnnotationMetadataHierarchy.of(parentType.getDeclaredMetadata(), producerField.getDeclaredMetadata())
                         )
                 );
                 return writer;
@@ -131,7 +131,7 @@ class GroovyBeanDefinitionBuilder extends AbstractBeanDefinitionBuilder {
                         elementFactory.newMethodElement(
                                 parentType,
                                 methodNode,
-                                new AnnotationMetadataHierarchy(parentType.getDeclaredMetadata(), producerMethod.getDeclaredMetadata())
+                                AnnotationMetadataHierarchy.of(parentType.getDeclaredMetadata(), producerMethod.getDeclaredMetadata())
                         )
                 );
                 return writer;

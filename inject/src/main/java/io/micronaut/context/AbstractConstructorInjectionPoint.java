@@ -42,7 +42,7 @@ public abstract class AbstractConstructorInjectionPoint<T> extends AbstractBeanC
     protected AbstractConstructorInjectionPoint(BeanDefinition<T> beanDefinition) {
         super(
                 Objects.requireNonNull(beanDefinition, "Bean definition cannot be null").getBeanType(),
-                new AnnotationMetadataHierarchy(
+                AnnotationMetadataHierarchy.of(
                         beanDefinition.getAnnotationMetadata(),
                         beanDefinition.getConstructor().getAnnotationMetadata()),
                 beanDefinition.getConstructor().getArguments()

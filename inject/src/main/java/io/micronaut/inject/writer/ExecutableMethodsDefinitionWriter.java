@@ -474,7 +474,7 @@ public class ExecutableMethodsDefinitionWriter extends AbstractClassFileWriter i
         AnnotationMetadata annotationMetadata = methodElement.getAnnotationMetadata();
 
         if (annotationMetadata instanceof AnnotationMetadataHierarchy) {
-            annotationMetadata = new AnnotationMetadataHierarchy(
+            annotationMetadata = AnnotationMetadataHierarchy.of(
                     new AnnotationMetadataReference(beanDefinitionReferenceClassName, annotationMetadata),
                     annotationMetadata.getDeclaredMetadata()
             );

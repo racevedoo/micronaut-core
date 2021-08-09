@@ -2714,7 +2714,7 @@ public class BeanDefinitionWriter extends AbstractClassFileWriter implements Bea
     private boolean isConstructorIntercepted(Element constructor) {
         // a constructor is intercepted when this bean is an advised type but not proxied
         // and any AROUND_CONSTRUCT annotations are present
-        AnnotationMetadataHierarchy annotationMetadata = new AnnotationMetadataHierarchy(this.annotationMetadata, constructor.getAnnotationMetadata());
+        AnnotationMetadata annotationMetadata = AnnotationMetadataHierarchy.of(this.annotationMetadata, constructor.getAnnotationMetadata());
         final String interceptType = "AROUND_CONSTRUCT";
         // for beans that are @Around(proxyTarget=true) only the constructor of the proxy target should be intercepted. Beans returned from factories are always proxyTarget=true
 

@@ -20,6 +20,7 @@ import io.micronaut.context.BeanContext;
 import io.micronaut.context.BeanRegistration;
 import io.micronaut.context.BeanResolutionContext;
 import io.micronaut.context.DefaultBeanContext;
+import io.micronaut.core.annotation.AnnotationMetadata;
 import io.micronaut.core.annotation.Internal;
 import io.micronaut.core.annotation.NonNull;
 import io.micronaut.core.annotation.Nullable;
@@ -156,7 +157,7 @@ public final class ConstructorInterceptorChain<T> extends AbstractInterceptorCha
             @NonNull Object... parameters) {
 
         if (interceptors == null) {
-            final AnnotationMetadataHierarchy hierarchy = new AnnotationMetadataHierarchy(definition.getAnnotationMetadata(), constructor.getAnnotationMetadata());
+            final AnnotationMetadata hierarchy = AnnotationMetadataHierarchy.of(definition.getAnnotationMetadata(), constructor.getAnnotationMetadata());
             final List<String> annotationNames = InterceptorBindingQualifier.resolveInterceptorValues(hierarchy);
 
             final Collection<BeanRegistration<Interceptor<?, ?>>> resolved = ((DefaultBeanContext) beanContext).getBeanRegistrations(
